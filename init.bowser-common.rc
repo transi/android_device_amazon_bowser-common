@@ -68,8 +68,9 @@ on post-fs-data
     chown media_rw media_rw /data/media
 
     # camera calibration - DCC folder permission
-    mkdir /data/misc/camera 0700 media media
-    mkdir /data/misc/camera/R01_MVEN002_LD0_ND0_IR0_SH0_FL0_SVEN002_DCCID46 0700 media media
+    # read by the camera HAL, which since Nougat runs in cameraserver (group camera, not media)
+    mkdir /data/misc/camera 0750 media camera
+    mkdir /data/misc/camera/R01_MVEN002_LD0_ND0_IR0_SH0_FL0_SVEN002_DCCID46 0750 media camera
 
     mkdir /data/smc 0770 drmrpc drmrpc
     chown drmrpc drmrpc /data/smc/counter.bin
